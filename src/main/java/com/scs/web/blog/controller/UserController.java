@@ -24,13 +24,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author mq_xu
- * @ClassName UserController
- * @Description 用户控制器
- * @Date 15:56 2019/11/9
- * @Version 1.0
- **/
+
 @WebServlet(urlPatterns = {"/sign-in"})
 public class UserController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);

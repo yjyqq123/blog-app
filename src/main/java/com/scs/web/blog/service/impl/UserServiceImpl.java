@@ -14,13 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author mq_xu
- * @ClassName UserServiceImpl
- * @Description 用户业务逻辑接口实现类
- * @Date 12:21 2019/11/9
- * @Version 1.0
- **/
+
 public class UserServiceImpl implements UserService {
     private UserDao userDao = DaoFactory.getUserDaoInstance();
     private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);

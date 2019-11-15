@@ -2,13 +2,7 @@ package com.scs.web.blog.domain;
 
 import lombok.Data;
 
-/**
- * @author mq_xu
- * @ClassName UserDto
- * @Description 用户传输对象
- * @Date 12:20 2019/11/9
- * @Version 1.0
- **/
+
 @Data
 public class UserDto {
     private String mobile;
