@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -86,5 +87,18 @@ public class DbUtil {
         for (int i = 0; i < 3; i++) {
             connection = DbUtil.getConnection();
         }
+    }
+
+    public static Long getUserId(){
+        Random random = new Random();
+        long bound = random.nextInt(61);
+        return bound;
+    }
+
+    public static LocalDateTime getCreateTime(){
+        LocalDateTime now = LocalDateTime.now();
+        Random random = new Random();
+        int bound = random.nextInt(999);
+        return now.minusHours(bound);
     }
 }
