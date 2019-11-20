@@ -48,35 +48,39 @@ public class JSoupSpider {
         }
         return userList;
     }
-    public static List<Address> getAddress() {
+    public static List<Address> getAddress(){
         Document document = null;
-        List<Address> addressList = new ArrayList();
-
+        List<Address> addressList = new ArrayList<>(100);
         try {
-            document = Jsoup.connect("http://www.ip33.com/area_code.html" ).get();
+            document = Jsoup.connect("http://www.ip33.com/area_code.html").get();
         } catch (IOException e) {
             logger.error("连接失败");
         }
         Elements divs = document.getElementsByClass("ip");
         divs.forEach(div -> {
 
-            Elements elements = div.child(1).child(0).child(1).children();
-            elements.forEach(element -> {
-                Address address = new Address();
-                StringBuilder province = new StringBuilder("");
-                String country = div.child(1).child(0).child(0).text();
-                int c = country.indexOf(" ");
-                int p = div.child(0).text().indexOf(" ");
-                int e = element.text().indexOf(" ");
-                province.append(div.child(0).text().substring(0, p)).append(country.substring(0,c)).append(element.text().substring(0, e));
-                address.setAddress(province.toString());
-                addressList.add(address);
-            });
+            Element element1= div.children().get(1).children().get(0).children().get(1);
+            Element element2= div.children().get(1);
+            Element element3= div.children().first();
 
+            System.out.println(element1.childNodeSize()/2);
+
+            for (int j=0;j<=(element2.childNodeSize()/2-1);j++) {
+                for (int i = 0; i <= (element1.childNodeSize() / 2 - 1); i++) {
+                    String str2 = element2.children().get(j).children().first().toString().substring(4, element2.children().get(j).children().first().toString().indexOf(" "));
+                    String str1 = element1.children().get(i).toString().substring(4, element1.children().get(i).toString().indexOf(" "));
+                    String str3 = element3.toString().substring(4,element3.toString().indexOf(" "));
+                    String str4 = str3+str2+str1;
+                    Address address = new Address();
+                    address.setAddress(str4);
+                    addressList.add(address);
+                }
+            }
         });
-
+        System.out.println(addressList.size());
         return addressList;
     }
+
     public static List<Article> getArticles() {
         Document document = null;
         List<Article> articleList = new ArrayList<>(100);
